@@ -22,6 +22,9 @@ stdenv.mkDerivation rec {
   postPatch = ''
     sed -i 's,find_program( LLVM_CLANG clang PATHS ''${LLVM_BINDIR} NO_DEFAULT_PATH ),find_program( LLVM_CLANG clang PATHS "${clang-unwrapped}/bin" NO_DEFAULT_PATH ),' CMakeLists.txt
   '';
+  postInstall = ''
+    ln -sr $out/share/clc/tahiti-amdgcn-mesa-mesa3d.bc $out/share/clc/gfx1010-amdgcn-mesa-mesa3d.bc
+  '';
 
   nativeBuildInputs = [ cmake ninja ];
   buildInputs = [ llvm clang clang-unwrapped python ];
