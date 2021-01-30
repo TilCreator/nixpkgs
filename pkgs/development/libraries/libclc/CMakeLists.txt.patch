@@ -1,0 +1,11 @@
+--- ./CMakeLists.txt.orig
++++ ./CMakeLists.txt
+@@ -170,6 +170,8 @@ if( ${LLVM_VERSION} VERSION_GREATER "6.99.99" )
+        set( tahiti_aliases ${tahiti_aliases} gfx904 gfx906 )
+ endif()
+ 
++set( tahiti_aliases ${tahiti_aliases} gfx1010 )
++
+ # pkg-config file
+ configure_file( libclc.pc.in libclc.pc @ONLY )
+ install( FILES ${CMAKE_CURRENT_BINARY_DIR}/libclc.pc DESTINATION ${CMAKE_INSTALL_DATADIR}/pkgconfig )
