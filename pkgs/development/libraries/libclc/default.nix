@@ -18,6 +18,9 @@ stdenv.mkDerivation rec {
   };
   sourceRoot = "source/libclc";
 
+  patches = [
+    ./libclc.pc.in.patch # Fixes runtime includedir
+  ];
   # cmake expects all required binaries to be in the same place, so it will not be able to find clang without the patch without the patch
   postPatch = ''
     sed -i 's,find_program( LLVM_CLANG clang PATHS ''${LLVM_BINDIR} NO_DEFAULT_PATH ),find_program( LLVM_CLANG clang PATHS "${clang-unwrapped}/bin" NO_DEFAULT_PATH ),' CMakeLists.txt

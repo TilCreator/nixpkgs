@@ -1,0 +1,8 @@
+--- ./libclc.pc.in.orig
++++ ./libclc.pc.in
+@@ -1,4 +1,4 @@
+-includedir=@CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_INCLUDEDIR@
++includedir=@CMAKE_INSTALL_INCLUDEDIR@
+ libexecdir=@CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_DATADIR@/clc
+ 
+ Name: libclc
