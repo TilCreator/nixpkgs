@@ -27676,6 +27676,8 @@ with pkgs;
 
   sidplayfp = callPackage ../applications/audio/sidplayfp { };
 
+  sndlink = callPackage ../tools/audio/sndlink { };
+
   sndpeek = callPackage ../applications/audio/sndpeek { };
 
   sxhkd = callPackage ../applications/window-managers/sxhkd { };
