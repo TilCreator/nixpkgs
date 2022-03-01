@@ -11,7 +11,7 @@ stdenv.mkDerivation {
   src = fetchFromGitHub {
     owner = "google";
     repo = "fonts";
-    rev = "a3a831f0fe44cd58465c6937ea06873728f2ba0d";
+    rev = "2fba0d68602b7eb3374d030c1c34939de56023f9";
     sha256 = "19abx2bj7mkysv2ihr43m3kpyf6kv6v2qjlm1skxc82rb72xqhix";
   };
 
