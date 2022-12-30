@@ -11733,6 +11733,8 @@ with pkgs;
 
   smug = callPackage ../tools/misc/smug { };
 
+  smuview = libsForQt5.callPackage ../applications/science/electronics/smuview { };
+
   smpq = callPackage ../applications/misc/smpq { };
 
   sn0int = callPackage ../tools/security/sn0int { };
