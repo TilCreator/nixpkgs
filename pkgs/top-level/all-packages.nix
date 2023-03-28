@@ -34201,6 +34201,8 @@ with pkgs;
 
   super-slicer = darwin.apple_sdk_11_0.callPackage ../applications/misc/prusa-slicer/super-slicer.nix { };
 
+  super-slicer-beta = super-slicer.beta;
+
   super-slicer-latest = super-slicer.latest;
 
   snapmaker-luban = callPackage ../applications/misc/snapmaker-luban { };
