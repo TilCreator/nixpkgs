@@ -84,11 +84,6 @@ stdenv.mkDerivation rec {
   ] ++ nativeCheckInputs;
 
   patches = [
-    # Fix detection of TBB, see https://github.com/prusa3d/PrusaSlicer/issues/6355
-    (fetchpatch {
-      url = "https://github.com/prusa3d/PrusaSlicer/commit/76f4d6fa98bda633694b30a6e16d58665a634680.patch";
-      sha256 = "1r806ycp704ckwzgrw1940hh1l6fpz0k1ww3p37jdk6mygv53nv6";
-    })
     # Fix compile error with boost 1.79. See https://github.com/prusa3d/PrusaSlicer/issues/8238
     # Can be removed with the next version update
     (fetchpatch {
