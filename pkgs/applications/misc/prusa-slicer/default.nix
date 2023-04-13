@@ -15,7 +15,6 @@
 , glew
 , glib
 , gmp
-, gtest
 , gtk3
 , hicolor-icon-theme
 , ilmbase
@@ -81,7 +80,7 @@ stdenv.mkDerivation rec {
     xorg.libX11
   ] ++ lib.optionals withSystemd [
     systemd
-  ] ++ nativeCheckInputs;
+  ];
 
   patches = [
     # Fix compile error with boost 1.79. See https://github.com/prusa3d/PrusaSlicer/issues/8238
@@ -97,7 +96,6 @@ stdenv.mkDerivation rec {
   ];
 
   doCheck = true;
-  nativeCheckInputs = [ gtest ];
 
   separateDebugInfo = true;
 
