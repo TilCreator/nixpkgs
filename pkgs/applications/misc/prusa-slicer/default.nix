@@ -95,8 +95,6 @@ stdenv.mkDerivation rec {
     })
   ];
 
-  doCheck = true;
-
   separateDebugInfo = true;
 
   # The build system uses custom logic - defined in
@@ -135,9 +133,6 @@ stdenv.mkDerivation rec {
     # Fix resources folder location on macOS
     substituteInPlace src/PrusaSlicer.cpp \
       --replace "#ifdef __APPLE__" "#if 0"
-  '' + lib.optionalString (stdenv.isDarwin && stdenv.isx86_64) ''
-    # Disable segfault tests
-    sed -i '/libslic3r/d' tests/CMakeLists.txt
   '';
 
   src = fetchFromGitHub {
@@ -168,6 +163,18 @@ stdenv.mkDerivation rec {
     gappsWrapperArgs+=(
       --prefix LD_LIBRARY_PATH : "$out/lib"
     )
+  '';
+
+  doCheck = true;
+
+  checkPhase = ''
+    runHook preCheck
+
+    ctest \
+      --force-new-ctest-process \
+      -E 'libslic3r_tests|sla_print_tests'
+
+    runHook postCheck
   '';
 
   meta = with lib; {
