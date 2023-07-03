@@ -54,7 +54,10 @@ let
     '';
 
     # We don't need PS overrides anymore, and gcode-viewer is embedded in the binary.
-    postInstall = null;
+    postInstall = ''
+      mkdir -p "$out/lib"
+      mv -v $out/bin/*.* $out/lib/
+    '';
     separateDebugInfo = true;
 
     buildInputs = super.buildInputs ++ [
