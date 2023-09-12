@@ -21,14 +21,15 @@
 , armTrustedFirmwareRK3328
 , armTrustedFirmwareRK3399
 , armTrustedFirmwareS905
+, rockchip-binaries
 , buildPackages
 }:
 
 let
-  defaultVersion = "2023.07.02";
+  defaultVersion = "2023.10-rc4";
   defaultSrc = fetchurl {
     url = "https://ftp.denx.de/pub/u-boot/u-boot-${defaultVersion}.tar.bz2";
-    hash = "sha256-a2pIWBwUq7D5W9h8GvTXQJIkBte4AQAqn5Ryf93gIdU=";
+    hash = "sha256-khjrF3FCF8EAaCXXLhYO65kWh5yjZa/MQaa4UcI43ps=";
   };
   buildUBoot = lib.makeOverridable ({
     version ? null
@@ -48,7 +49,7 @@ let
     src = if src == null then defaultSrc else src;
 
     patches = [
-      ./0001-configs-rpi-allow-for-bigger-kernels.patch
+      #./0001-configs-rpi-allow-for-bigger-kernels.patch
     ] ++ extraPatches;
 
     postPatch = ''
@@ -439,6 +440,14 @@ in {
     '';
     extraMeta.platforms = [ "i686-linux" "x86_64-linux" ];
     filesToInstall = [ "u-boot.rom" ];
+  };
+
+  ubootQuartz64ModelA = buildUBoot {
+    defconfig = "quartz64-a-rk3566_defconfig";
+    extraMeta.platforms = [ "aarch64-linux" ];
+    BL31 = "${rockchip-binaries}/bin/rk35/rk3568_bl31.elf";
+    ROCKCHIP_TPL = "${rockchip-binaries}/bin/rk35/rk3566_ddr_1056MHz.bin";
+    filesToInstall = [ "u-boot-rockchip.bin" ];
   };
 
   ubootRaspberryPi = buildUBoot {

@@ -29073,6 +29073,7 @@ with pkgs;
     ubootQemuArm
     ubootQemuRiscv64Smode
     ubootQemuX86
+    ubootQuartz64ModelA
     ubootRaspberryPi
     ubootRaspberryPi2
     ubootRaspberryPi3_32bit
@@ -35341,6 +35342,8 @@ with pkgs;
   rke = callPackage ../applications/networking/cluster/rke { };
 
   rke2 = callPackage ../applications/networking/cluster/rke2 { };
+
+  rockchip-binaries = callPackage ../misc/rockchip-binaries { };
 
   rocketchat-desktop = callPackage ../applications/networking/instant-messengers/rocketchat-desktop { };
 
